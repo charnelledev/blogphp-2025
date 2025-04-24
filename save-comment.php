@@ -1,5 +1,6 @@
 <?php
 session_start();
+<<<<<<< HEAD
 require_once "database/database.php";
 /**
  * CE FICHIER DOIT ENREGISTRER UN NOUVEAU COMMENTAIRE EST REDIRIGER SUR L'ARTICLE !
@@ -67,3 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   header("Location: article.php?id=" . $article_id);
   exit;
 }
+=======
+require_once 'database/database.php';
+>>>>>>> e685ac1b9b9bf43b19dcd44f58cc3a0a83d3074e

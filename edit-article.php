@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 // 1-Démarre une nouvelle session ou reprend une session existante
 session_start();
 
@@ -19,3 +20,7 @@ $pageContent = ob_get_clean();
 
 // 7Inclut le modèle de mise en page HTML qui affichera le contenu de la page
 require 'templates/layout_html.php';
+=======
+session_start();
+require_once 'database/database.php';
+>>>>>>> e685ac1b9b9bf43b19dcd44f58cc3a0a83d3074e

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'database/database.php';
+ HEAD
 $error = [];
 
 $articles_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -34,3 +35,8 @@ $pageContent = ob_get_clean();
 
 //5-Inclure le layout de la page de sortie
 require_once 'layouts/layout_html.php';
+
+
+
+
+e685ac1b9b9bf43b19dcd44f58cc3a0a83d3074e
