@@ -1,19 +1,43 @@
 <?php
+session_start();
 require_once 'database/database.php';
 
-// 1--On affiche le titre autre
+// 1. Initialiser les articles
+if (!isset($_SESSION['articles'])) {
+    $_SESSION['articles'] = [];
+}
 
-$pageTitle ='Page Admin'; 
+// 2. Ajouter un article si formulaire soumis
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
+    $new_article = [
+        'titre' => htmlspecialchars($_POST['titre']),
+        'introduction' => htmlspecialchars($_POST['introduction']),
+        'content' => htmlspecialchars($_POST['content'])
+    ];
+    $_SESSION['articles'][] = $new_article;
+}
 
-// 2-Debut du tampon de la page de sortie
- 
+// 3. Supprimer un article
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
+    $index = (int)$_GET['delete'];
+    if (isset($_SESSION['articles'][$index])) {
+        unset($_SESSION['articles'][$index]);
+        $_SESSION['articles'] = array_values($_SESSION['articles']);
+    }
+}
+
+// 4. Variables de page
+$pageTitle = 'Page Admin';
+
+// 5. Début du tampon
 ob_start();
 
-// 3-inclure le layout de la page d' accueil
+// 6. Inclure layout
 require_once 'layouts/adminqwerty/admin_dashboardqwerty_html.php';
 
-//4-recuperation du contenu du tampon de la page d'accueil
+// 7. Récupérer tampon
 $pageContent = ob_get_clean();
 
-//5-Inclure le layout de la page de sortie
+// 8. Layout principal
 require_once 'layouts/layout_html.php';
+?>
