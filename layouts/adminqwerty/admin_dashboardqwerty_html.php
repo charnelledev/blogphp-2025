@@ -101,14 +101,13 @@
                }
                </style>
 <div class="containe">
-
     <h3>Articles ajoutés :</h3>
     <?php if (isset($_SESSION['articles']) && count($_SESSION['articles']) > 0): ?>
         <?php foreach ($_SESSION['articles'] as $index => $article): ?>
             <div class="article">
                 <h4><?= htmlspecialchars($article['titre']) ?></h4>
                 <p><strong>Introduction :</strong> <?= htmlspecialchars($article['introduction']) ?></p>
-                <p><strong>Contenu :</strong> <?= htmlspecialchars($article['content']) ?></p>
+                <p><strong>Date :</strong> <?= isset($article['date']) ? htmlspecialchars($article['date']) : '' ?></p>
 
         <div class="buttons">
             <a href="voir_article.php?index=<?= $index ?>">Voir</a>
@@ -127,3 +126,7 @@
 
 </body>
 </html>
+
+
+
+

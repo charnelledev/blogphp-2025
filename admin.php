@@ -12,8 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $new_article = [
         'titre' => htmlspecialchars($_POST['titre']),
         'introduction' => htmlspecialchars($_POST['introduction']),
-        'content' => htmlspecialchars($_POST['content'])
-    ];
+        'content' => htmlspecialchars($_POST['content']),
+        'date' => date('d/m/Y H:i'), // ajoute la date actuelle
+];
     $_SESSION['articles'][] = $new_article;
 }
 
@@ -41,3 +42,5 @@ $pageContent = ob_get_clean();
 // 8. Layout principal
 require_once 'layouts/layout_html.php';
 ?>
+
+
