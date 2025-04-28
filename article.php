@@ -37,6 +37,3 @@ $pageContent = ob_get_clean();
 require_once 'layouts/layout_html.php';
 
 
-
-
-e685ac1b9b9bf43b19dcd44f58cc3a0a83d3074e

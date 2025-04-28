@@ -6,12 +6,10 @@ RewriteRule ^(.*)$ $1.php [NC,L]
 RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
 RewriteRule ^ /%1 [NC,L,R]
 
-<<<<<<< HEAD
-=======
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1  [NC,L,R]
->>>>>>> e685ac1b9b9bf43b19dcd44f58cc3a0a83d3074e
+
 
