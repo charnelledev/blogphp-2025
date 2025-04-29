@@ -2,7 +2,13 @@
 session_start();
 require_once 'database/database.php';
 
-// 1. Initialiser les articles
+// Fonction pour générer un slug à partir du titre
+function generateSlug($title) {
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
+    return $slug;
+}
+
+// 1. Initialiser les articles en session
 if (!isset($_SESSION['articles'])) {
     $_SESSION['articles'] = [];
 }
@@ -13,9 +19,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         'titre' => htmlspecialchars($_POST['titre']),
         'introduction' => htmlspecialchars($_POST['introduction']),
         'content' => htmlspecialchars($_POST['content']),
-        'date' => date('d/m/Y H:i'), // ajoute la date actuelle
-];
+        'date' => date('Y-m-d H:i:s'),
+        'slug' => generateSlug($_POST['titre']) // ajout du slug
+    ];
+
     $_SESSION['articles'][] = $new_article;
+
+    // Insertion dans la base de données
+    $sql = "INSERT INTO articles (titre, introduction, content, slug, created_at) 
+            VALUES (:titre, :introduction, :content, :slug, :created_at)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        'titre' => $new_article['titre'],
+        'introduction' => $new_article['introduction'],
+        'content' => $new_article['content'],
+        'slug' => $new_article['slug'],
+        'created_at' => $new_article['date']
+    ]);
+
+    // Redirection pour éviter la soumission multiple
+    header('Location: admin.php');
+    exit;
 }
 
 // 3. Supprimer un article
@@ -42,5 +66,3 @@ $pageContent = ob_get_clean();
 // 8. Layout principal
 require_once 'layouts/layout_html.php';
 ?>
-
-
