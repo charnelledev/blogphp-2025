@@ -7,6 +7,19 @@ if($_SESSION['role'] !== 'admin') {
     header('Location: index.php'); // Rediriger vers la page d'accueil si l'utilisateur n'est pas admin
     exit;
 }
+
+//netoyage des entrer
+function cleanInput($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
+
+//recuperer les donnees entrees par l'utilisateur
+if(isset($_POST['add_article'])) {
+   $titre = cleanInput($_POST['titre']);
+   $slug = generateSlug($titre);
+   $introduction = cleanInput($_POST['introduction']);
+    $content = cleanInput($_POST['content']);
+}
 //recuperation de tous les articles
 $query = "SELECT * FROM articles ORDER BY created_at DESC";
 $resultats = $pdo->prepare($query);
@@ -25,14 +38,14 @@ if (!isset($_SESSION['articles'])) {
 }
 
 // 2. Ajouter un article si formulaire soumis
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-    $new_article = [
-        'titre' => htmlspecialchars($_POST['titre']),
-        'introduction' => htmlspecialchars($_POST['introduction']),
-        'content' => htmlspecialchars($_POST['content']),
-        'date' => date('Y-m-d H:i:s'),
-        'slug' => generateSlug($_POST['titre']) // ajout du slug
-    ];
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
+//     $new_article = [
+//         'titre' => htmlspecialchars($_POST['titre']),
+//         'introduction' => htmlspecialchars($_POST['introduction']),
+//         'content' => htmlspecialchars($_POST['content']),
+//         'date' => date('Y-m-d H:i:s'),
+//         'slug' => generateSlug($_POST['titre']) // ajout du slug
+//     ];
 
     $_SESSION['articles'][] = $new_article;
 
