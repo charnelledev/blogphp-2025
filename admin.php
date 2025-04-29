@@ -55,17 +55,23 @@ function createSlug($title) {
 if(isset($_POST['add-article'])) {
    $titre = cleanInput($_POST['titre']);
    $slug = createSlug($titre);
-   var_dump($slug);
-   die();
    $introduction = cleanInput($_POST['introduction']);
    $content = cleanInput($_POST['content']);
+
+   //validation des donnees
+   if(empty($titre)|| empty($slug) || empty($introduction) || empty($content)) {
+       $error = "veillez remplir tous les champs";
+}
+//insertion du nouvelle article dans la base de donnee
+$query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,created_at) VALUE(:titre, :slug, :introduction, :content, NOW())');
+$query->execute(compact('titre', 'slug', 'introduction', 'content'))
+
 }
 //recuperation de tous les articles
 $query = "SELECT * FROM articles ORDER BY created_at DESC";
 $resultats = $pdo->prepare($query);
 $resultats->execute();
 $allArticles = $resultats->fetchAll();
-
 
 // // 1. Initialiser les articles en session
 // if (!isset($_SESSION['articles'])) {
