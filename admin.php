@@ -7,6 +7,11 @@ if($_SESSION['role'] !== 'admin') {
     header('Location: index.php'); // Rediriger vers la page d'accueil si l'utilisateur n'est pas admin
     exit;
 }
+//recuperation de tous les articles
+$query = "SELECT * FROM articles ORDER BY created_at DESC";
+$resultats = $pdo->prepare($query);
+$resultats->execute();
+$allArticles = $resultats->fetchAll();
 
 // Fonction pour générer un slug à partir du titre
 function generateSlug($title) {
