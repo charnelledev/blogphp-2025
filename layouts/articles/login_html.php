@@ -5,9 +5,12 @@
       <h2>Se Connecter</h2>
     </div>
     <?php
-            if (!empty($errors)) {
-                echo "<div style=\"color:white; text-align: center; background-color:#ff6c6c;padding:2px 7px; margin-bottom:10px; font-size:23px;\">$errors</div>";
-            }
+            if (!empty($errors=[
+                // 'email' => 'Email ou nom d\'utilisateur incorrect',
+                // 'password' => 'Mot de passe incorrect'
+            ])) {
+                echo "<div style=\"color:white; text-align: center; background-color:#ff6c6c;padding:2px 7px; margin-bottom:10px; font-size:23px;\"></div>";
+            } 
             ?>
 
     <form action="login" class="form" id="form" method="POST">

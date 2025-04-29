@@ -4,7 +4,7 @@
 <div>
   <?php foreach ($articles as $article): ?>
   
-  <h2> <?= $article['title'] ?> </h2>
+  <h2> <?= $article['titre'] ?> </h2>
 
   <p> <?= $article['introduction']?> </p>
 

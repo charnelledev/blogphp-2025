@@ -2,6 +2,12 @@
 session_start();
 require_once 'database/database.php';
 
+
+if($_SESSION['role'] !== 'admin') {
+    header('Location: index.php'); // Rediriger vers la page d'accueil si l'utilisateur n'est pas admin
+    exit;
+}
+
 // Fonction pour générer un slug à partir du titre
 function generateSlug($title) {
     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));

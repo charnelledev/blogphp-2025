@@ -5,7 +5,7 @@ require_once 'database/database.php';
 
 
 if (isset($_POST['login'])) {
-  $errors = ""; 
+  $errors = []; 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
       // Vérification des informations de connexion
@@ -40,10 +40,10 @@ if (isset($_POST['login'])) {
                   break;
           }
       } else {
-          $errors = "Email ou mot de passe incorrect.";
+          $errors['email']= "Email ou mot de passe incorrect.";
       }
   }else{
-      $errors = "Tous les champs doivent être remplis.";
+      $errors['login'] = "Tous les champs doivent être remplis.";
   }
 }
 
