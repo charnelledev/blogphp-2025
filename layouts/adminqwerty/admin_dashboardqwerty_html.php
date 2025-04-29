@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,27 +17,25 @@
                 <h1>Admin Dashboard</h1>
         </div>
         <form action="admin" class="form" id="form" method="post" enctype="multipart/form-data">
-            
-            <div class="form-control">
-                <label for="titre">Titre</label>
-                <input type="text" id="titre" placeholder="dw" name="titre" autocomplete="off"
-                value="<?= isset($_POST['titre']) ? $_POST['titre'] : '' ?>">
-            </div>
-            
-            <div class="form-control">
-                <label for="introduction"> Introduction</label>
-                <input type="introduction" id="introduction" placeholder="intro" name="introduction"
-                value="<?= isset($_POST['introduction']) ? $_POST['introduction'] : '' ?>">
-            </div>
 
-            <div class="form-control">
-                <labe for="content">content</label>
-                <input type="content" id="content" name="content">
-                
-            </div>
-            
-    
-    <button type="submit" name="register"> creer</button>
+    <div class="form-control">
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" placeholder="Titre" name="titre" autocomplete="off"
+            value="<?= isset($_POST['titre']) ? $_POST['titre'] : '' ?>">
+    </div>
+
+    <div class="form-control">
+        <label for="introduction">Introduction</label>
+        <input type="text" id="introduction" placeholder="Introduction" name="introduction"
+            value="<?= isset($_POST['introduction']) ? $_POST['introduction'] : '' ?>">
+    </div>
+
+    <div class="form-control">
+        <label for="content">Contenu</label>
+        <textarea id="content" name="content" placeholder="Contenu de l'article..." rows="8" cols="50"><?= isset($_POST['content']) ? $_POST['content'] : '' ?></textarea>
+    </div>
+
+    <button type="submit" name="register">Créer</button>
 </form>
 </div>
                 <style>    
