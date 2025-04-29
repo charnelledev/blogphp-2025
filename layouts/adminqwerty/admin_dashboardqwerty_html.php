@@ -61,6 +61,8 @@
 
 
 <h1>Nos articles</h1>
+
+<p>il y a <?= count($allArticles); ?> articles</p>
 </body>
 </html>
 
