@@ -121,7 +121,7 @@ $article = $_SESSION['articles'][$index];
         <p><?php echo isset($article['date']) ? htmlspecialchars($article['date']) : 'Non spécifiée'; ?></p>
     </div>
 
-    <a class="btn-back" href="/layouts/adminqwerty/admin_dashboardqwerty_html.php">← Retour au tableau de bord</a>
+    <a class="btn-back" href="admin.php">← Retour au tableau de bord</a>
 </div>
 
 </body>
