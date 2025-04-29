@@ -44,16 +44,30 @@
 </div>
                 <style>    
                        .containe{
-                   max-width: 1000px;
+                   max-width: 2050px;
                    margin-top: 20px;
                    background: #f1f1f1;
                    padding: 30px;
                    border-radius: 10px;
                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+               }
+                    .conten{
+                   max-width: 2000px;
+                   margin-top: 20px;
+                   background: #f1f1f1;
+                   padding: 10px;
+                   border-radius: 10px;
+                   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    display: grid;
+                     gap: 20px;
+
                }
                
                h3, h4 {
                    color: #333;
+                     text-align: center;
                }
                
                .article {
@@ -101,25 +115,28 @@
                }
                </style>
 <div class="containe">
-    <h3>Articles ajoutés :</h3>
-    <?php if (isset($_SESSION['articles']) && count($_SESSION['articles']) > 0): ?>
-        <?php foreach ($_SESSION['articles'] as $index => $article): ?>
-            <div class="article">
-                <h4><?= htmlspecialchars($article['titre']) ?></h4>
-                <p><strong>Introduction :</strong> <?= htmlspecialchars($article['introduction']) ?></p>
-                <p><strong>Date :</strong> <?= isset($article['date']) ? htmlspecialchars($article['date']) : '' ?></p>
+    <h3>Liste  des Articles:</h3>
+    <div class="conten">
 
-        <div class="buttons">
-            <a href="voir_article.php?index=<?= $index ?>">Voir</a>
-            <a href="edit_article.php?index=<?= $index ?>">Éditer</a>
-            <a href="?delete=<?= $index ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">Supprimer</a>
-        </div>
-    </div>
-<?php endforeach; ?>
-<?php else: ?>
-<p>Aucun article ajouté pour l'instant.</p>
-<?php endif; ?>
-
+        <?php if (isset($_SESSION['articles']) && count($_SESSION['articles']) > 0): ?>
+            <?php foreach ($_SESSION['articles'] as $index => $article): ?>
+                <div class="article">
+                    <h4><?= htmlspecialchars($article['titre']) ?></h4>
+                    <p><strong>Introduction :</strong> <?= htmlspecialchars($article['introduction']) ?></p>
+                    <p><strong>Date :</strong> <?= isset($article['date']) ? htmlspecialchars($article['date']) : '' ?></p>
+                    
+                    <div class="buttons">
+                        <a href="voir_article.php?index=<?= $index ?>">Voir</a>
+                        <a href="edit_article.php?index=<?= $index ?>">Éditer</a>
+                        <a href="?delete=<?= $index ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">Supprimer</a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Aucun article ajouté pour l'instant.</p>
+                    <?php endif; ?>
+                    
+                </div>
 
 </div>
 

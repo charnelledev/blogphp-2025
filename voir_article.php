@@ -88,7 +88,9 @@ $article = $_SESSION['articles'][$index];
 
     <div class="section">
         <h2>Contenu</h2>
-        <p><?php echo nl2br(htmlspecialchars($article['content'])); ?></p>
+        <p><?php
+         echo nl2br(htmlspecialchars($article['content']));
+         ?></p>
     </div>
 
     <a class="btn-back" href="../admin.php">← Retour au tableau de bord</a>
