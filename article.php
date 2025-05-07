@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'database/database.php';
- HEAD
+
 $error = [];
 
 $articles_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);

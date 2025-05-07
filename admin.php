@@ -58,15 +58,20 @@ if(isset($_POST['add-article'])) {
    $introduction = cleanInput($_POST['introduction']);
    $content = cleanInput($_POST['content']);
 
-   //validation des donnees
    if(empty($titre)|| empty($slug) || empty($introduction) || empty($content)) {
-       $error = "veillez remplir tous les champs";
+    $error = "veillez remplir tous les champs";
+} else {
+    //insertion du nouvelle article dans la base de donnee
+    $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,created_at) VALUE(:titre, :slug, :introduction, :content, NOW())');
+    $query->execute(compact('titre', 'slug', 'introduction', 'content'));
 }
-//insertion du nouvelle article dans la base de donnee
-$query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,created_at) VALUE(:titre, :slug, :introduction, :content, NOW())');
-$query->execute(compact('titre', 'slug', 'introduction', 'content'))
+    //redirection vers la page admin
+    header('Location: admin.php');
+    exit;
+}
 
-}
+
+
 //recuperation de tous les articles
 $query = "SELECT * FROM articles ORDER BY created_at DESC";
 $resultats = $pdo->prepare($query);

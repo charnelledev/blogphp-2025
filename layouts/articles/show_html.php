@@ -1,4 +1,4 @@
-<h1 class="article-title"> <?= $article['title'] ?></h1>
+<h1 class="article-title"> <?= $article['titre'] ?></h1>
 
 <p><?= $article['content'] ?></p> <br>
 <em> poster le <?= $article['created_at'] ?></em> <br>

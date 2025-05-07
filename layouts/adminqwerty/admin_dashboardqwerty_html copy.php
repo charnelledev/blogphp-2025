@@ -124,7 +124,7 @@
                     <div class="buttons">
                         <a href="voir_article.php?index=<?= $index ?>">Voir</a>
                         <a href="edit_article.php?index=<?= $index ?>">Éditer</a>
-                        <a href="?delete=<?= $index ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">Supprimer</a>
+                        <a href="delete_article.php?id=<?=($article['id']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">Supprimer</a>   
                     </div>
                 </div>
                 <?php endforeach; ?>
