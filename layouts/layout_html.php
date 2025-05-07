@@ -23,8 +23,34 @@ if (session_status() == PHP_SESSION_NONE) {
         </a>
       </h2>
     </div>
-
     <nav>
+      <ul>
+        <?php
+        switch (true) {
+          case isset($_SESSION['auth']) && ($_SESSION['role'] === 'admin'):
+        ?>
+          
+            <li><a id="gcu" href="admin.php">Dashboard Admin</a></li>
+          <?php
+            break;
+
+          case isset($_SESSION['auth']):
+          ?>
+            <li><a id="gcu" href="logout.php">Se déconnecter</a></li>
+          <?php
+            break;
+
+          default:
+          ?>
+            <li><a id="lien-header" href="register.php">S'inscrire</a></li>
+            <li><a href="login.php">Se connecter</a></li>
+        <?php
+            break;
+        }
+        ?>
+      </ul>
+    
+    
       <ul>
         <?php if (isset($_SESSION['auth'])) : ?>
         <li><a id="gcu" href="logout.php">Se deconnecter</a></li>

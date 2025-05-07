@@ -71,7 +71,7 @@
             <p><?=$article['introduction'] ?></p>
             <small>Publié le <?= $article['created_at'] ?></small> <br>
             <a href="voir_article.php?id=<?= urldecode($article['id']) ?>">Voir</a>
-            <a href="edit_article.php?id=<?= urldecode($article['id']) ?>">Éditer</a>
+            <a href="edit-article.php?id=<?= urldecode($article['id']) ?>">Éditer</a>
             <a href="delete-article.php?id=<?= urldecode($article['id']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">Supprimer</a>      
 
             </div>
