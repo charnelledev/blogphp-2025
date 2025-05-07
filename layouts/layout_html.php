@@ -29,7 +29,7 @@ if (session_status() == PHP_SESSION_NONE) {
         switch (true) {
           case isset($_SESSION['auth']) && ($_SESSION['role'] === 'admin'):
         ?>
-          
+          <li><a id="gcu" href="logout.php">Se deconnecter</a></li>
             <li><a id="gcu" href="admin.php">Dashboard Admin</a></li>
           <?php
             break;

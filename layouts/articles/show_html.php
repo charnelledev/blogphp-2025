@@ -2,21 +2,26 @@
 
 <p><?= $article['content'] ?></p> <br>
 <em> poster le <?= $article['created_at'] ?></em> <br>
-<?php if(count($commentaires)===0) :?>
 
+<?php if(count($commentaires) === 0) :?>
 <h2 class="comment-heading">Il n'y a pas encore de commentaires pour cet article... SOYEZ LE PREMIER ! :D</h2>
 <?php else :?>
 
-<h2 class="comment-heading">Il y a déjà <?phpcount($commentaires)?> Reactions</h2>
-<?php foreach($commentaires as $commentaires):?>
+<h2 class="comment-heading">Il y a déjà <?= count($commentaires)?> Reactions</h2>
+<?php foreach($commentaires as $commentaire) : ?>
 
-<h3 class="comment-author">Commentaire de : Nom de l'auteur</h3>
-<small class="comment-date">Le date_du_commentaire</small>
+<h3 class="comment-author">Commentaire de :
+    <?= $commentaire ['username'] ?> 
+</h3>
+
+<small class="comment-date"> <?= $commentaire ['created_at'] ?></small>
 <blockquote class="comment-content">
-  <em><?php $commentaires['content']?></em>
+  <em><?= $commentaire['content'] ?></em>
 </blockquote>
 <?php endforeach; ?>
 <?php endif ;?>
+
+<?php if(isset($_SESSION['auth'])) :?>
 
 <!-- Formulaire de commentaire -->
 <form action="save-comment" method="POST" class="comment-form">
@@ -28,9 +33,10 @@
   <input type="hidden" name="user_id" value="<?= $_SESSION['auth']['id']?>"><br>
   <button class="comment-form-submit">COMMENTER !</button><br>
 </form>
+<?php else : ?>
 
 <p>Veuillez vous connecter ou vous inscrire pour commenter.</p>
 <a href="register.php">S'inscrire</a> | <a href="login.php">Se connecter</a>
-
+<?php endif; ?>
 
  <a href ="index.php">Retour</a>

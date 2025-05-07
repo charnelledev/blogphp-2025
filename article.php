@@ -18,6 +18,17 @@ $article = $query->fetch();
 // echo "</pre>";
 
 
+//on join la table articles et users pour afficher le nom de l'auteur
+$sql ="SELECT comments.*,users.username
+FROM comments
+JOIN users ON comments.user_id = users.id
+ WHERE article_id = :article_id";
+$query=$pdo->prepare($sql);
+$query->execute(compact('article_id'));
+$commentaires = $query->fetchAll();
+
+
+
 
 // / 1--On affiche le titre autre
 
