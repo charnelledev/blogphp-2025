@@ -4,14 +4,14 @@ require_once 'database/database.php';
 
 $error = [];
 
-$articles_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-if ($articles_id === NULL || $articles_id === false) {  
-    $error['articles_id'] = "Le parametre id  est invalide.";
+$article_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if ($article_id === NULL || $article_id === false) {  
+    $error['article_id'] = "Le parametre id  est invalide.";
 
 }
-$sql = "SELECT * FROM articles WHERE id =:articles_id";
+$sql = "SELECT * FROM articles WHERE id =:article_id";
 $query = $pdo->prepare($sql);
-$query->execute(compact('articles_id'));
+$query->execute(compact('article_id'));
 $article = $query->fetch();
 // echo "<pre>";
 // var_dump($articles);
@@ -21,7 +21,7 @@ $article = $query->fetch();
 
 // / 1--On affiche le titre autre
 
-$pageTitle ='Accueil des articles'; 
+$pageTitle ='Accueil des article'; 
 
 // 2-Debut du tampon de la page de sortie
  

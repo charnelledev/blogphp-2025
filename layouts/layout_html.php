@@ -51,14 +51,7 @@ if (session_status() == PHP_SESSION_NONE) {
       </ul>
     
     
-      <ul>
-        <?php if (isset($_SESSION['auth'])) : ?>
-        <li><a id="gcu" href="logout.php">Se deconnecter</a></li>
-        <?php else : ?>
-        <li><a id="lien-header" href="register.php">S'inscrire</a></li>
-        <li><a href="login.php">Se connecter</a></li>
-        <?php endif; ?>
-      </ul>
+     
     </nav>
 
   </header>
