@@ -1,5 +1,8 @@
 <?php
 require_once 'database/database.php';
+require '../vendor/autoload.php';
+
+use JasonGrimes\Paginator;
 
 //recuperation des articles de la base de donnees
 $resultats = $pdo->query("SELECT * FROM articles ORDER BY created_at DESC");
