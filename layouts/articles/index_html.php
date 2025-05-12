@@ -2,7 +2,9 @@
 
 <hr>
 <div>
-  <?php foreach ($articles as $article): ?>
+  <?php foreach ($articles as $article): 
+    // var_dump($articles);
+    ?>
   
   <h2> <?= $article['titre'] ?> </h2>
 
@@ -11,3 +13,7 @@
   <a href="article.php?id=<?= $article['id']?>">Voir plus</a>
   <?php endforeach; ?>
 </div>
+<nav class="pagination-wrapper">
+
+  <?= $paginator ?>
+</nav>

@@ -65,7 +65,9 @@
 <p>il y a <?= count($allArticles); ?> articles</p>
 
 <div class="article-grid">
-    <?php foreach($allArticles as $article): ?>
+    <?php foreach($allArticles as $article): 
+      // var_dump($article);
+      ?>
     <div class="article">
             <h2><?=$article['titre'] ?></h2>
             <p><?=$article['introduction'] ?></p>

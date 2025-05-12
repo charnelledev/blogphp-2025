@@ -2,6 +2,44 @@
 session_start();
 require_once 'database/database.php';
 
+// require 'vendor/autoload.php';
+
+// use JasonGrimes\Paginator;
+// $totalQuery = $pdo->query("SELECT COUNT(*) FROM articles");
+// $totalItems = $totalQuery->fetchColumn();
+
+// $itemsPerPage = 5;
+// $currentPage = $_GET['page'] ?? 1;
+
+
+// //requete paginee(optimiser pour mysql)
+// $offset = ($currentPage - 1) * $itemsPerPage;
+
+// $sql = 'SELECT * FROM articles 
+// ORDER BY created_at
+// DESC 
+// LIMIT :limit OFFSET :offset';
+// $stmt = $pdo->prepare($sql);
+// $stmt->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+// $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+// $stmt->execute();
+// $allArticles = $stmt->fetchAll();
+// // var_dump($allArticles);
+// var_dump($allArticles);
+// $sql= $pdo->query("SELECT count(*) FROM articles");
+// $totalItems = $sql->fetchColumn();
+
+// $sql= $pdo->query("SELECT count(*) FROM articles");
+// $totalItems = $sql->fetchColumn();
+
+
+// $paginator = new Paginator(
+//     $totalItems, 
+//     $itemsPerPage,
+//     $currentPage, 
+//     '?page=(:num)'
+// );
+
 
 if($_SESSION['role'] !== 'admin') {
     header('Location: index.php'); // Rediriger vers la page d'accueil si l'utilisateur n'est pas admin
@@ -70,43 +108,11 @@ if(isset($_POST['add-article'])) {
     exit;
 }
 
-
-
 //recuperation de tous les articles
 $query = "SELECT * FROM articles ORDER BY created_at DESC";
 $resultats = $pdo->prepare($query);
 $resultats->execute();
 $allArticles = $resultats->fetchAll();
-
-// // 1. Initialiser les articles en session
-// if (!isset($_SESSION['articles'])) {
-//     $_SESSION['articles'] = [];
-// }
-
-// // 2. Ajouter un article si formulaire soumis
-// // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-// //     $new_article = [
-// //         'titre' => htmlspecialchars($_POST['titre']),
-// //         'introduction' => htmlspecialchars($_POST['introduction']),
-// //         'content' => htmlspecialchars($_POST['content']),
-// //         'date' => date('Y-m-d H:i:s'),
-// //         'slug' => generateSlug($_POST['titre']) // ajout du slug
-// //     ];
-
-
-//     // Redirection pour éviter la soumission multiple
-//     header('Location: admin.php');
-//     exit;
-
-// // 3. Supprimer un article
-// if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
-//     $index = (int)$_GET['delete'];
-//     if (isset($_SESSION['articles'][$index])) {
-//         unset($_SESSION['articles'][$index]);
-//         $_SESSION['articles'] = array_values($_SESSION['articles']);
-//     }
-// }
-
 // 4. Variables de page
 $pageTitle = 'Page Admin';
 
