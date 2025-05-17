@@ -4,7 +4,7 @@ if (isset($error)) {
   echo "<p style='color: #fff;padding:20px; background:#FF6600; width:400px'>$error</p>";
 }
 ?>
-<form method="POST" action="edit-article.php">
+<form method="POST" action="edit-article">
   <input type="hidden" name="id" value="<?= $articleId; ?>">
   <label for="titre">Titre :</label>
   <input type="text" name="titre" id="titre" value="<?= $titre; ?>">

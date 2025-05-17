@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'libraries/database.php';
+require_once 'libraries/utils.php';
 
 $pdo = getpdo();
 /**
@@ -35,6 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $content =htmlspecialchars($_POST['content'] ?? null);
   $article_id = $_POST['article_id'] ?? null;
 
+ 
+
+
   
   // 4-Vérification de l'existence de l'article
   $query = $pdo->prepare('SELECT COUNT(*) FROM articles WHERE id = :article_id');
@@ -50,24 +54,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   exit;
 }
 
-  
-  // 4Vérification finale des infos envoyées dans le formulaire (donc dans le POST)
-  // DSi il n'y a pas l'id de l'user  OU qu'il n'y a pas de contenu OU qu'il n'y a pas d'identifiant d'article
-  // if (!$user_auth || !$article_id || !$content) {
-  //   // var_dump($article_id );
-  //   // die();
-  //     die("Votre formulaire a été mal rempli !");
-  // }
-  
-  // 4-On fait quand même gaffe à ce que le gars n'essaye pas des balises cheloues dans son commentaire
-  // $content = htmlspecialchars($content);
-  
-  // var_dump($content);
-  // die();
-  
-  
-  // if (!$articleExists) {
-  //     die("Ho ! L'article $article_id n'existe pas boloss !");
-  // }
   
 

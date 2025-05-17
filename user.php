@@ -3,6 +3,7 @@
 <?php
 
 require_once 'libraries/database.php';
+require_once 'libraries/utils.php';
 
 $pdo = getpdo();
 // 1--On affiche le titre autre

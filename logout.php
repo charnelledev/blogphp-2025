@@ -7,5 +7,6 @@ header("Location: index.php"); // Rediriger vers la page de connexion
 exit(); // Terminer le script
 
 require_once 'libraries/database.php';
+require_once 'libraries/utils.php';
 
 $pdo = getpdo();

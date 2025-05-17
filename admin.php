@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'libraries/database.php';
+require_once 'libraries/utils.php';
 
 $pdo = getpdo();
 
@@ -102,7 +103,7 @@ if(isset($_POST['add-article'])) {
     $error = "veillez remplir tous les champs";
 } else {
     //insertion du nouvelle article dans la base de donnee
-    $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,created_at) VALUE(:titre, :slug, :introduction, :content, NOW())');
+    $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
     $query->execute(compact('titre', 'slug', 'introduction', 'content'));
 }
     //redirection vers la page admin
@@ -122,11 +123,6 @@ $pageTitle = 'Page Admin';
 ob_start();
 
 // 6. Inclure layout
-require_once 'layouts/adminqwerty/admin_dashboardqwerty_html.php';
+render('adminqwerty/admin_dashboardqwerty', compact('allArticles', 'pageTitle'));
 
-// 7. Récupérer tampon
-$pageContent = ob_get_clean();
-
-// 8. Layout principal
-require_once 'layouts/layout_html.php';
 ?>

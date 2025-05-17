@@ -24,15 +24,16 @@
 <?php if(isset($_SESSION['auth'])) :?>
 
 <!-- Formulaire de commentaire -->
-<form action="save-comment" method="POST" class="comment-form">
+
+ <form action="save-comment" method="POST" class="comment-form">
   <h3 class="comment-form-heading">Vous voulez réagir ? N'hésitez pas !</h3><br>
 
   <textarea name="content" cols="30" rows="10" placeholder="Votre commentaire ..."
     class="comment-form-content"></textarea><br>
-  <input type="hidden" name="article_id" value="<?= $article_id?>"><br>
+  <input type="hidden" name="article_id" value="<?= $article_id ?>"><br>
   <input type="hidden" name="user_id" value="<?= $_SESSION['auth']['id']?>"><br>
   <button class="comment-form-submit">COMMENTER !</button><br>
-</form>
+</form> 
 <?php else : ?>
 
 <p>Veuillez vous connecter ou vous inscrire pour commenter.</p>
