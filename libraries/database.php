@@ -1,9 +1,19 @@
 
 <?php
 
-function getpdo(){
+/**
+ * retourne la connexion de la base de données
+ * 
+ * @return PDO
+
+ */
+
+
+function getpdo(): PDO
+{
+
 // 5-Connexion à la base de données avec PDO
-$pdo = new PDO('mysql:host=localhost;dbname=blogphp-2025;charset=utf8', 'root', '');
+// $pdo = new PDO('mysql:host=localhost;dbname=blogphp-2025;charset=utf8', 'root', '');
 
 define('DB_SERVERNAME','127.0.0.1');
 define('DB_USERNAME','root');

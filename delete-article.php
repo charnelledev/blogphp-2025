@@ -2,6 +2,9 @@
 session_start();
 require_once 'libraries/database.php';
 
+
+$pdo = getpdo();
+
 // require_once 'database/database.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {

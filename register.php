@@ -4,6 +4,8 @@ session_start();
 
 require_once 'libraries/database.php';
 
+$pdo = getpdo();
+
 
 if (isset($_POST['register'])) {
 
