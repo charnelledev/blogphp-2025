@@ -1,5 +1,5 @@
 <?php
-require_once 'database/database.php';
+require_once 'libraries/database.php';
 require 'vendor/autoload.php';
 
 use JasonGrimes\Paginator;

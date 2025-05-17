@@ -2,7 +2,7 @@
 session_start();
 
 
-require_once 'database/database.php';
+require_once 'libraries/database.php';
 
 
 if (isset($_POST['register'])) {
