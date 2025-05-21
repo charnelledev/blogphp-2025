@@ -45,8 +45,10 @@ $pdo = getpdo();
 
 
 if($_SESSION['role'] !== 'admin') {
-    header('Location: index.php'); // Rediriger vers la page d'accueil si l'utilisateur n'est pas admin
-    exit;
+    redirect('index.php');
+    // header('Location: index.php');
+     // Rediriger vers la page d'accueil si l'utilisateur n'est pas admin
+    // exit;
 }
 
 //netoyage des entrer
@@ -107,8 +109,9 @@ if(isset($_POST['add-article'])) {
     $query->execute(compact('titre', 'slug', 'introduction', 'content'));
 }
     //redirection vers la page admin
-    header('Location: admin.php');
-    exit;
+    // header('Location: admin.php');
+    // exit;
+    redirect('admin.php');
 }
 
 //recuperation de tous les articles

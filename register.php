@@ -58,9 +58,9 @@ if (isset($_POST['register'])) {
    $req->execute([$_POST['username'], $_POST['email'], $password]);
    
    // On redirige vers la page de login
-
-   header("Location: login");
-   exit();
+     redirect('login.php');
+  //  header("Location: login");
+  //  exit();
  }
 
  

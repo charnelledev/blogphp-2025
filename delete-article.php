@@ -18,5 +18,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([$id]);
 
 // Redirection vers la page d'affichage
-header("Location: index.php");
-exit;
+// header("Location: index.php");
+// exit;
+
+redirect('index.php');

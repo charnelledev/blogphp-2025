@@ -37,11 +37,13 @@ if (isset($_POST['login'])) {
           // Redirection en fonction du rôle
           switch ($user['role']) {
               case 'admin':
-                  header("Location: admin.php");
+                //   header("Location: admin.php");
+                    redirect('admin.php');
                   break;
 
               default:
-                  header("Location: user.php");
+                //   header("Location: user.php");
+                    redirect('user.php');
                   break;
           }
       } else {

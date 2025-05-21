@@ -50,11 +50,14 @@ if (isset($_POST['update'])) {
         $data = compact('titre', 'slug', 'introduction', 'content', 'articleId');
         $query = $pdo->prepare('UPDATE articles SET titre = :titre, slug = :slug, introduction = :introduction, content = :content WHERE id = :articleId');
         $query->execute($data);
-        header("Location: admin.php");
-       
+        // header("Location: admin.php");
+        redirect('admin.php');
+        
     }
 }
 
 $pageTitle = 'Éditer un article';
 
 render('articles/edit-article', compact('titre', 'slug', 'articleId', 'pageTitle', 'introduction', 'content', 'error'));
+
+//redirection vers la pages des articles

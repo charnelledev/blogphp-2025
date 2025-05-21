@@ -50,8 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $query->execute(compact( 'content', 'article_id','user_auth'));
 
   // 6Rediriger vers la page de l'article après l'ajout du commentaire
-  header("Location: article.php?id=" . $article_id);
-  exit;
+  // header("Location: article.php?id=" . $article_id);
+  // exit;
+
+  //redirection vers la pages des articles
+  redirect ("article.php?id=" . $article_id);
+  
 }
 
   
