@@ -94,6 +94,7 @@ function createSlug($title) {
     return strtr($string, $accents);
   }
 
+
 //recuperer les donnees entrees par l'utilisateur
 if(isset($_POST['add-article'])) {
    $titre = cleanInput($_POST['titre']);
@@ -101,12 +102,24 @@ if(isset($_POST['add-article'])) {
    $introduction = cleanInput($_POST['introduction']);
    $content = cleanInput($_POST['content']);
 
+    // Traitement de l'image
+    $imageName = "";
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $imageTmp = $_FILES['image']['tmp_name'];
+        $imageName = time() . '_' . basename($_FILES['image']['name']);
+        $destination = 'assets/images/' . $imageName;
+
+        if (!move_uploaded_file($imageTmp, $destination)) {
+            $error = "Erreur lors de l'upload de l'image.";
+        }
+    }
+
    if(empty($titre)|| empty($slug) || empty($introduction) || empty($content)) {
     $error = "veillez remplir tous les champs";
 } else {
     //insertion du nouvelle article dans la base de donnee
-    $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
-    $query->execute(compact('titre', 'slug', 'introduction', 'content'));
+    $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,image,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
+    $query->execute(compact('titre', 'slug', 'introduction', 'content' ,'imageName'));
 }
     //redirection vers la page admin
     // header('Location: admin.php');
