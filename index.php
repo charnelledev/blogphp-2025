@@ -1,32 +1,37 @@
 <?php
+use JasonGrimes\Paginator;
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
+require_once 'vendor/autoload.php';
 
-$pdo = getpdo();
 
-require 'vendor/autoload.php';
 
-use JasonGrimes\Paginator;
+
 
 //requete comptant le nombre d'articles
-$totalQuery = $pdo->query("SELECT COUNT(*) FROM articles");
-$totalItems = $totalQuery->fetchColumn();
+// $totalQuery = $pdo->query("SELECT COUNT(*) FROM articles");
+// $totalItems = $totalQuery->fetchColumn();
+$totalItems = countArticles();
 
 $itemsPerPage = 5;
 $currentPage = $_GET['page'] ?? 1;
+$articlesByPaginator = findAllArticlesByPaginator($currentPage,$itemsPerPage);
 
-//requete paginee(optimiser pour mysql)
-$offset = ($currentPage - 1) * $itemsPerPage;
+// $itemsPerPage = 5;
+// $currentPage = $_GET['page'] ?? 1;
 
-$sql = 'SELECT * FROM articles 
-ORDER BY created_at
-DESC 
-LIMIT :limit OFFSET :offset';
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
-$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
-$articles = $stmt->fetchAll();
+// //requete paginee(optimiser pour mysql)
+// $offset = ($currentPage - 1) * $itemsPerPage;
+
+// $sql = 'SELECT * FROM articles 
+// ORDER BY created_at
+// DESC 
+// LIMIT :limit OFFSET :offset';
+// $stmt = $pdo->prepare($sql);
+// $stmt->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+// $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+// $stmt->execute();
+// $articles = $stmt->fetchAll();
 // var_dump($articles);
 // $sql= $pdo->query("SELECT count(*) FROM articles");
 // $totalItems = $sql->fetchColumn();
@@ -46,7 +51,7 @@ $paginator = new Paginator(
 
 $pageTitle ='Accueil du Blog'; 
 
-render('articles/index',compact('articles','paginator', 'pageTitle'));
+render('articles/index',compact('articlesByPaginator','paginator', 'pageTitle'));
 
 // render('articles/index',[
 //     'pagetitle' => $pageTitle,

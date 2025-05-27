@@ -27,8 +27,9 @@ $pdo = getpdo();
 // 6var_dump($_SESSION['auth']['id']);
 // die();
 if(!isset($_SESSION['auth']['id'])) {
-  header("location: loging");
-  exit;
+  redirect("loging.php");
+  // header("location: loging");
+  // exit;
 }
 $user_auth = $_SESSION['auth']['id'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

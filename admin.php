@@ -118,8 +118,9 @@ if(isset($_POST['add-article'])) {
     $error = "veillez remplir tous les champs";
 } else {
     //insertion du nouvelle article dans la base de donnee
-    $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,image,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
-    $query->execute(compact('titre', 'slug', 'introduction', 'content' ,'imageName'));
+    $allarticle =  findcreateArticle($titre, $slug, $introduction, $content,$imageName);
+    // $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,image,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
+    // $query->execute(compact('titre', 'slug', 'introduction', 'content' ,'imageName'));
 }
     //redirection vers la page admin
     // header('Location: admin.php');
@@ -127,11 +128,14 @@ if(isset($_POST['add-article'])) {
     redirect('admin.php');
 }
 
+$allArticles = findAllArticles();
+
+
 //recuperation de tous les articles
-$query = "SELECT * FROM articles ORDER BY created_at DESC";
-$resultats = $pdo->prepare($query);
-$resultats->execute();
-$allArticles = $resultats->fetchAll();
+// $query = "SELECT * FROM articles ORDER BY created_at DESC";
+// $resultats = $pdo->prepare($query);
+// $resultats->execute();
+// $allArticles = $resultats->fetchAll();
 // 4. Variables de page
 $pageTitle = 'Page Admin';
 

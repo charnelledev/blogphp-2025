@@ -17,8 +17,8 @@ $pageContent = ob_get_clean();
 
 require_once 'layouts/layout_html.php';
 }
-function redirect(string $url):void{
-    header("Location:$url");
+function redirect(string $path): void{
+    header("Location:$path");
 exit;
 }
 

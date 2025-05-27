@@ -2,7 +2,7 @@
 
 <hr>
 <div>
-  <?php foreach ($articles as $article): 
+  <?php foreach ($articlesByPaginator as $article): 
     // var_dump($articles);
     ?>
   
