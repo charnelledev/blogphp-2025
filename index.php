@@ -3,19 +3,20 @@ use JasonGrimes\Paginator;
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
 require_once 'vendor/autoload.php';
+require_once 'libraries/Models/Article.php';
+$modelArticle = new Articles();
+//instence de la classe $modelArticle
 
-
-
+$itemsPerPage = 5;
+$currentPage = $_GET['page'] ?? 1;
 
 
 //requete comptant le nombre d'articles
 // $totalQuery = $pdo->query("SELECT COUNT(*) FROM articles");
 // $totalItems = $totalQuery->fetchColumn();
-$totalItems = countArticles();
+$totalItems = $modelArticle->countArticles();
 
-$itemsPerPage = 5;
-$currentPage = $_GET['page'] ?? 1;
-$articlesByPaginator = findAllArticlesByPaginator($currentPage,$itemsPerPage);
+$articlesByPaginator = $modelArticle->findAllArticlesByPaginator($currentPage,$itemsPerPage);
 
 
 

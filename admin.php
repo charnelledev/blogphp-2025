@@ -118,7 +118,7 @@ if(isset($_POST['add-article'])) {
     $error = "veillez remplir tous les champs";
 } else {
     //insertion du nouvelle article dans la base de donnee
-    $allarticle =  findcreateArticle($titre, $slug, $introduction, $content,$imageName);
+    $allarticle =  findcreateArticle($titre, $slug,  $introduction, $content, $imageName);
     // $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,image,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
     // $query->execute(compact('titre', 'slug', 'introduction', 'content' ,'imageName'));
 }

@@ -21,5 +21,5 @@ $req = VerifinderById('articles', $_GET['id']);
 // Redirection vers la page d'affichage
 // header("Location: index.php");
 // exit;
-
 redirect('index.php');
+
