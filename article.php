@@ -13,19 +13,21 @@ if ($article_id === NULL || $article_id === false) {
 }
 
 // Récupération de l'article
-$sql = "SELECT * FROM articles WHERE id = :article_id";
-$query = $pdo->prepare($sql);
-$query->execute(compact('article_id'));
-$article = $query->fetch();
+// $sql = "SELECT * FROM articles WHERE id = :article_id";
+// $query = $pdo->prepare($sql);
+// $query->execute(compact('article_id'));
+// $article = $query->fetch();
+$article = findArticles($article_id);
 
 // Récupération des commentaires avec auteur
-$sql = "SELECT comments.*, users.username
-        FROM comments
-        JOIN users ON comments.user_id = users.id
-        WHERE article_id = :article_id";
-$query = $pdo->prepare($sql);
-$query->execute(compact('article_id'));
-$commentaires = $query->fetchAll();
+// $sql = "SELECT comments.*, users.username
+//         FROM comments
+//         JOIN users ON comments.user_id = users.id
+//         WHERE article_id = :article_id";
+// $query = $pdo->prepare($sql);
+// $query->execute(compact('article_id'));
+// $commentaires = $query->fetchAll();
+$commentaires = findAllComments();
 
 // Titre de la page
 $pageTitle = 'Détail de l’article'; 

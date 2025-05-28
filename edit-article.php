@@ -13,12 +13,12 @@ $error = "";
 
 // Récupération des infos en GET
 if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
-    $articleId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-
-    $sql = "SELECT * FROM articles WHERE id = ?";
-    $query = $pdo->prepare($sql);
-    $query->execute([$articleId]);
-    $article = $query->fetch(PDO::FETCH_ASSOC);
+    // $articleId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    // $sql = "SELECT * FROM articles WHERE id = ?";
+    // $query = $pdo->prepare($sql);
+    // $query->execute([$articleId]);
+    // $article = $query->fetch(PDO::FETCH_ASSOC);
+    $article = recupere();
 
     if ($article) {
         $titre = $article['titre'] ?? "";
@@ -47,9 +47,11 @@ if (isset($_POST['update'])) {
     if (empty($titre) || empty($slug) || empty($introduction) || empty($content)) {
         $error = "Veuillez remplir tous les champs du formulaire !";
     } else {
-        $data = compact('titre', 'slug', 'introduction', 'content', 'articleId');
-        $query = $pdo->prepare('UPDATE articles SET titre = :titre, slug = :slug, introduction = :introduction, content = :content WHERE id = :articleId');
-        $query->execute($data);
+        
+        // $data = compact('titre', 'slug', 'introduction', 'content', 'articleId');
+        // $query = $pdo->prepare('UPDATE articles SET titre = :titre, slug = :slug, introduction = :introduction, content = :content WHERE id = :articleId');
+        // $query->execute($data);
+        VerifeunderArticle();
         // header("Location: admin.php");
         redirect('admin.php');
         

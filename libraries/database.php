@@ -103,5 +103,105 @@ function handleAddArticleRequest()
 //    $content = cleanInput($_POST['content']);
 // }
 }
+function findUserByUsername($username)
+{
+    $pdo = getpdo();
+    $query = "SELECT * FROM users WHERE username = ?";
+    $req = $pdo->prepare($query);
+    $req->execute([$username]);
+    return $req->fetch();
+}
+function findUserByEmail($email)
+{
+    $pdo = getpdo();
+    $query = "SELECT * FROM users WHERE email = ?";
+    $req = $pdo->prepare($query);
+    $req->execute([$email]);
+    return $req->fetch();
+}
+function findArticles($article_id){
+ $pdo = getpdo();
+    $sql = "SELECT * FROM articles WHERE id = :article_id";
+    $query = $pdo->prepare($sql);
+    $query->execute(compact('article_id'));
+    $article = $query->fetch();
+    return $article;
+}
+function findAllComments()
+{
+    $pdo = getpdo();
+// Récupération des commentaires avec auteur
+    $sql = "SELECT comments.*, users.username
+        FROM comments
+        JOIN users ON comments.user_id = users.id
+        WHERE article_id = :article_id";
+$query = $pdo->prepare($sql);
+$query->execute(compact('article_id'));
+$commentaires = $query->fetchAll();
+return $commentaires;
+
+}
+function findErrors()
+{
+   $pdo = getpdo();
+    $errors = [];
+    $query = "INSERT INTO users (username,email,password) VALUES(?,?,?)";
+    $req = $pdo->prepare($query);
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    
+    $req->execute([$_POST['username'], $_POST['email'], $password]);
+    return $errors;
+}
+function EXitArticle($article_id){
+    $pdo = getpdo();
+    // Vérification de l'existence de l'article
+    $query = $pdo->prepare('SELECT COUNT(*) FROM articles WHERE id = :article_id');
+    $query->execute(['article_id' => $article_id]);
+    $articleExists = $query->fetchColumn();
+    return $articleExists;
+}
+function InsertComments($content, $article_id, $user_auth){
+$pdo = getpdo();
+ // 5Insertion du commentaire
+    $query = $pdo->prepare('INSERT INTO comments SET content = :content, article_id = :article_id,  user_id = :user_auth,created_at = NOW()');
+  $query->execute(compact( 'content', 'article_id','user_auth'));
+}
+ function VerifindINformationConnect(){
+$pdo = getpdo();
+     $query = "SELECT * FROM users
+      WHERE (email = :email OR username =:email)";
+      $query = $pdo->prepare($query);
+      $query->execute([
+          'email' => $_POST['email'], 
+          'password' => $_POST['password']
+        ]);
+        $user = $query->fetch();
+        return $user;
+    }
+    function recupere(){
+    $pdo = getpdo();
+        $articleId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $sql = "SELECT * FROM articles WHERE id = ?";
+        $query = $pdo->prepare($sql);
+        $query->execute([$articleId]);
+        $article = $query->fetch(PDO::FETCH_ASSOC);
+        return $article;
+    }
+function VerifeunderArticle(){
+     $pdo = getpdo();
+    $data = compact('titre', 'slug', 'introduction', 'content', 'articleId');
+    $query = $pdo->prepare('UPDATE articles SET titre = :titre, slug = :slug, introduction = :introduction, content = :content WHERE id = :articleId');
+    $query->execute($data);
+}
+function VerifinderById($id)
+{
+    $pdo = getpdo();
+    $id = $_GET['id'];
+    $query = "SELECT * FROM users WHERE id = ?";
+    $req = $pdo->prepare($query);
+    $req->execute([$id]);
+    return $req->fetch();
+}
+
  ?>
 

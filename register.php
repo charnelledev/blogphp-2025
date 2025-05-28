@@ -19,12 +19,15 @@ if (isset($_POST['register'])) {
    
  } else {
   
-   $query = "SELECT * FROM users WHERE username = ?";
-   $req = $pdo->prepare($query);
-   $req->execute([$_POST['username']]);
-   
-   if ($req->fetch()) {
-     $errors['username'] = "Ce pseudo n'est plus disponible"; 
+  //  $query = "SELECT * FROM users WHERE username = ?";
+  //  $req = $pdo->prepare($query);
+  //  $req->execute([$_POST['username']]);
+  //  $req =findUserByUsername($_POST['username']);
+  
+$user = findUserByUsername($_POST['username']);
+
+if ($user) {
+    $errors['username'] = "Ce pseudo n'est plus disponible";
    }
  }
  
@@ -34,12 +37,19 @@ if (isset($_POST['register'])) {
    $errors['email'] = "Email non valide";
  } else {
    // SELECT * FROM users WHERE email = post
-   $query = "SELECT * FROM users WHERE email = ?";
-   $req = $pdo->prepare($query);
-   $req->execute([$_POST['email']]);
-   if ($req->fetch()) {
-     $errors['email'] = "Cet email est déjà pris";
-   }
+  //  $query = "SELECT * FROM users WHERE email = ?";
+  //  $req = $pdo->prepare($query);
+  //  $req->execute([$_POST['email']]);
+  // $req = findUserByEmail($_POST['email']);
+$user = findUserByEmail($_POST['email']);
+
+if ($user) {
+    $errors['email'] = "Cet email est déjà pris";
+}
+
+  //  if ($req->fetch()) {
+  //    $errors['email'] = "Cet email est déjà pris";
+  //  }
  }
 
  // Password-----------------------------------------
@@ -51,16 +61,16 @@ if (isset($_POST['register'])) {
 
  // INSERT INTO------------------------------------------
  if (empty($errors)) {
-   $query = "INSERT INTO users (username,email,password) VALUES(?,?,?)";
-   $req = $pdo->prepare($query);
-   $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+  //  $query = "INSERT INTO users (username,email,password) VALUES(?,?,?)";
+  //  $req = $pdo->prepare($query);
+  //  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-   $req->execute([$_POST['username'], $_POST['email'], $password]);
+  //  $req->execute([$_POST['username'], $_POST['email'], $password]);
+  $errors = findErrors();
    
    // On redirige vers la page de login
      redirect('login.php');
-  //  header("Location: login");
-  //  exit();
+ 
  }
 
  

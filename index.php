@@ -17,8 +17,7 @@ $itemsPerPage = 5;
 $currentPage = $_GET['page'] ?? 1;
 $articlesByPaginator = findAllArticlesByPaginator($currentPage,$itemsPerPage);
 
-// $itemsPerPage = 5;
-// $currentPage = $_GET['page'] ?? 1;
+
 
 // //requete paginee(optimiser pour mysql)
 // $offset = ($currentPage - 1) * $itemsPerPage;

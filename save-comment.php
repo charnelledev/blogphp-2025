@@ -42,13 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   
   // 4-Vérification de l'existence de l'article
-  $query = $pdo->prepare('SELECT COUNT(*) FROM articles WHERE id = :article_id');
-  $query->execute(['article_id' => $article_id]);
-  $articleExists = $query->fetchColumn();
+  // $query = $pdo->prepare('SELECT COUNT(*) FROM articles WHERE id = :article_id');
+  // $query->execute(['article_id' => $article_id]);
+  // $articleExists = $query->fetchColumn();
+$articleExists = EXitArticle($article_id);
 
   // 5Insertion du commentaire
-  $query = $pdo->prepare('INSERT INTO comments SET content = :content, article_id = :article_id,  user_id = :user_auth,created_at = NOW()');
-  $query->execute(compact( 'content', 'article_id','user_auth'));
+
+  // $query = $pdo->prepare('INSERT INTO comments SET content = :content, article_id = :article_id,  user_id = :user_auth,created_at = NOW()');
+  // $query->execute(compact( 'content', 'article_id','user_auth'));
+  InsertComments($content, $article_id, $user_auth);
 
   // 6Rediriger vers la page de l'article après l'ajout du commentaire
   // header("Location: article.php?id=" . $article_id);
