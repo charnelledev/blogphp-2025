@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Kengn\\Blogphp2025\\' => array($baseDir . '/src'),
 );

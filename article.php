@@ -2,8 +2,12 @@
 session_start();
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
+require_once 'libraries/Models/Article.php';
+require_once 'libraries/Models/Comment.php';
+$modelComment = new Comments();
+$modelArticle = new Articles();
 
-$pdo = getpdo();
+// $pdo = getpdo();
 
 $error = [];
 
@@ -17,7 +21,7 @@ if ($article_id === NULL || $article_id === false) {
 // $query = $pdo->prepare($sql);
 // $query->execute(compact('article_id'));
 // $article = $query->fetch();
-$article = findArticles($article_id);
+$article = $modelArticle->find($article_id);
 
 // Récupération des commentaires avec auteur
 // $sql = "SELECT comments.*, users.username
@@ -27,7 +31,7 @@ $article = findArticles($article_id);
 // $query = $pdo->prepare($sql);
 // $query->execute(compact('article_id'));
 // $commentaires = $query->fetchAll();
-$commentaires = findAllComments();
+$commentaires = $modelComment->find($article_id);
 
 // Titre de la page
 $pageTitle = 'Détail de l’article'; 

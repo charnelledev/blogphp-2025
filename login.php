@@ -2,6 +2,8 @@
 session_start();
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
+require_once 'libraries/Models/User.php';
+$modelUser = new Users();
 
 $pdo = getpdo();
 
@@ -22,7 +24,7 @@ if (isset($_POST['login'])) {
     //       'password' => $_POST['password']
     //   ]);
     //   $user = $query->fetch();
-    $user = VerifindINformationConnect();
+    $user = $modelUser->VerifindINformationConnect();
       // Si les informations de connexion sont correctes, on crée une session et on redirige vers la page d'accueil de l'admin ou l'utilisateur
 
       if ($user && password_verify($_POST['password'], $user['password'])) {

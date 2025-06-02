@@ -3,6 +3,8 @@ session_start();
 
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
+require_once 'libraries/Models/Article.php';
+$modelArticle = new Articles();
 
 $pdo = getpdo();
 
@@ -18,7 +20,7 @@ if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
     // $query = $pdo->prepare($sql);
     // $query->execute([$articleId]);
     // $article = $query->fetch(PDO::FETCH_ASSOC);
-    $article = recupere();
+    $article = $modelArticle ->recupere();
 
     if ($article) {
         $titre = $article['titre'] ?? "";
@@ -51,7 +53,7 @@ if (isset($_POST['update'])) {
         // $data = compact('titre', 'slug', 'introduction', 'content', 'articleId');
         // $query = $pdo->prepare('UPDATE articles SET titre = :titre, slug = :slug, introduction = :introduction, content = :content WHERE id = :articleId');
         // $query->execute($data);
-        VerifeunderArticle();
+        $modelArticle->VerifeunderArticle($titre,$articleId,$slug, $introduction, $content);
         // header("Location: admin.php");
         redirect('admin.php');
         
@@ -60,6 +62,6 @@ if (isset($_POST['update'])) {
 
 $pageTitle = 'Éditer un article';
 
-render('articles/edit-article', compact('titre', 'slug', 'articleId', 'pageTitle', 'introduction', 'content', 'error'));
+render('articles/edit-article', compact('titre', 'slug', 'pageTitle', 'introduction', 'content', 'error'));
 
 //redirection vers la pages des articles

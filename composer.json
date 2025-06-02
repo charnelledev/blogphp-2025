@@ -1,5 +1,19 @@
 {
-    "require": {
-        "jasongrimes/paginator": "~1.0"
-    }
+    "name": "kengn/blogphp-2025",
+    "description": "poo autoloarding",
+    "autoload": {
+        "psr-4": {
+            "Kengn\\Blogphp2025\\": "src/",
+            "",
+            
+
+        }
+    },
+    "authors": [
+        {
+            "name": "charnelledev",
+            "email": "kengnemaiva54@gmail.com"
+        }
+    ],
+    "require": {}
 }

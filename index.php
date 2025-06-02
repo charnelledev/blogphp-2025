@@ -19,7 +19,6 @@ $totalItems = $modelArticle->countArticles();
 $articlesByPaginator = $modelArticle->findAllArticlesByPaginator($currentPage,$itemsPerPage);
 
 
-
 // //requete paginee(optimiser pour mysql)
 // $offset = ($currentPage - 1) * $itemsPerPage;
 

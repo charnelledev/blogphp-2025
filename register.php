@@ -4,6 +4,8 @@ session_start();
 
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
+require_once 'libraries/Models/User.php';
+$modelUser = new Users();
 
 $pdo = getpdo();
 
@@ -24,7 +26,7 @@ if (isset($_POST['register'])) {
   //  $req->execute([$_POST['username']]);
   //  $req =findUserByUsername($_POST['username']);
   
-$user = findUserByUsername($_POST['username']);
+$user = $modelUser->findUserByUsername($_POST['username']);
 
 if ($user) {
     $errors['username'] = "Ce pseudo n'est plus disponible";
@@ -41,7 +43,7 @@ if ($user) {
   //  $req = $pdo->prepare($query);
   //  $req->execute([$_POST['email']]);
   // $req = findUserByEmail($_POST['email']);
-$user = findUserByEmail($_POST['email']);
+$user = $modelUser->findUserByEmail($_POST['email']);
 
 if ($user) {
     $errors['email'] = "Cet email est déjà pris";
@@ -66,7 +68,7 @@ if ($user) {
   //  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
   //  $req->execute([$_POST['username'], $_POST['email'], $password]);
-  $errors = findErrors();
+  $errors = $modelUser->findErrors();
    
    // On redirige vers la page de login
      redirect('login.php');

@@ -2,6 +2,8 @@
 session_start();
 require_once 'libraries/database.php';
 require_once 'libraries/utils.php';
+require_once 'libraries/Models/Article.php';
+$modelArticle = new Articles();
 
 $pdo = getpdo();
 
@@ -118,7 +120,8 @@ if(isset($_POST['add-article'])) {
     $error = "veillez remplir tous les champs";
 } else {
     //insertion du nouvelle article dans la base de donnee
-    $allarticle =  findcreateArticle($titre, $slug,  $introduction, $content, $imageName);
+    $allarticle = $modelArticle -> findcreateArticle($titre, $slug,  $introduction, $content, $imageName);
+
     // $query = $pdo->prepare('INSERT INTO articles(titre,slug,introduction,content,image,created_at) VALUES(:titre, :slug, :introduction, :content, NOW())');
     // $query->execute(compact('titre', 'slug', 'introduction', 'content' ,'imageName'));
 }
@@ -128,7 +131,7 @@ if(isset($_POST['add-article'])) {
     redirect('admin.php');
 }
 
-$allArticles = findAllArticles();
+$allArticles = $modelArticle->findAllArticles();
 
 
 //recuperation de tous les articles

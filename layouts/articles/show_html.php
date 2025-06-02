@@ -2,7 +2,6 @@
 
 <p><?= $article['content'] ?></p> <br>
 <em> poster le <?= $article['created_at'] ?></em> <br>
-
 <?php if(count($commentaires) === 0) :?>
 <h2 class="comment-heading">Il n'y a pas encore de commentaires pour cet article... SOYEZ LE PREMIER ! :D</h2>
 <?php else :?>
